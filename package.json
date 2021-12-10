@@ -1,0 +1,21 @@
+{
+  "name": "movies1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "npm run dev --prefix=client",
+    "server": "npm run dev --prefix=server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OtomiVetra/movies1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OtomiVetra/movies1/issues"
+  },
+  "homepage": "https://github.com/OtomiVetra/movies1#readme"
+}
