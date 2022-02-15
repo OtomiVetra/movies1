@@ -1,3 +1,4 @@
+import Link from "next/link";
 const MovieItem = ({ movie }) => {
   const { title, poster, genres, plot, year, runtime, _id } = movie;
   return (
@@ -14,13 +15,14 @@ const MovieItem = ({ movie }) => {
       <div className="entity-content">
         <h2 className="entity-title">{title}</h2>
         <div className="entity-category">
-          <a className="content-link" href="movies-blocks.html">
-            comedy
-          </a>
-          ,
-          <a className="content-link" href="movies-blocks.html">
-            detective
-          </a>
+          {genres.map((genre, i) => {
+            return (
+              <Link href={`/?genre=${genre}`} key={i}><a className="content-link">
+                {genre}{i === genres.length - 1 ? "" : ", "}
+                {/* длинна массива -1 */}
+              </a></Link>
+            )
+          })}
         </div>
         <div className="entity-info">
           <div className="info-lines">

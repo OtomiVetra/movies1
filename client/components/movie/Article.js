@@ -22,10 +22,10 @@ const MovieArticle = ({ movie }) => {
         <div className="entity-category">
           {genres.map((genre, i) => {
             return (
-              <a className="content-link" href="movies-blocks.html" key={i}>
+              <Link href={`/?genre=${genre}`} key={i}><a className="content-link">
                 {genre}{i === genres.length - 1 ? "" : ", "}
                 {/* длинна массива -1 */}
-              </a>
+              </a></Link>
             )
           })}
         </div>

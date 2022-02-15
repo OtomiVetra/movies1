@@ -40,7 +40,7 @@ const MainLayout = ({ children }) => {
       {/* Theme styles */}
       <link href="/html/css/dot-icons.css" rel="stylesheet" type="text/css" />
       <link href="/html/css/theme.css" rel="stylesheet" type="text/css" />
-      <header className="header header-horizontal header-view-pannel">
+      <header className="header header-horizontal header-view-pannel" id="scroll-top">
         <div className="container">
           <nav className="navbar">
             <a className="navbar-brand" href="/html/">
@@ -260,7 +260,7 @@ const MainLayout = ({ children }) => {
         </div>
       </section>
       {children}
-      <a className="scroll-top disabled" href="#">
+      <a className="scroll-top" href="#scroll-top">
         {/* стрелка вверх для промота */}
         <i className="fas fa-angle-up" aria-hidden="true" />
       </a>
@@ -430,7 +430,7 @@ const MainLayout = ({ children }) => {
         </div>
         <div className="footer-copy">
           <div className="container">
-            Copyright 2019 © AmigosThemes. All rights reserved.
+            Copyright {new Date().getFullYear()} © AmigosThemes. All rights reserved.
           </div>
         </div>
       </footer>

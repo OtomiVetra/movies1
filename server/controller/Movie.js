@@ -3,10 +3,12 @@ const Comment = require('../model/Comment');
 
 const list = async (req, res) => {
   try {
-    const { skip = 0, limit = 10 } = req.query;
+    const criteria = {}
+    const { skip = 0, limit = 10, genre } = req.query;
+    if (genre) { criteria.genres = genre }
     res.json({
-      count: await Movie.countDocuments(),
-      items: await Movie.find().skip(+skip).limit(+limit)
+      count: await Movie.countDocuments(criteria),
+      items: await Movie.find(criteria).skip(+skip).limit(+limit)
     });
   } catch (error) {
     next(error)

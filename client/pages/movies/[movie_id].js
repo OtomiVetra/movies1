@@ -8,6 +8,7 @@ const API_URL = "http://localhost:3001";
 import { useEffect, useState } from "react";
 const MoviePage = () => {
   const [movie, setMovie] = useState(null);
+  const [comments, setComments] = useState([]);
   const router = useRouter();
   const { movie_id } = router.query;
   useEffect(() => {
@@ -16,6 +17,7 @@ const MoviePage = () => {
       .then(res => res.json())
       .then(data => {
         setMovie(data.item);
+        setComments(data.comments)
       })
   }, [movie_id])
   return (
@@ -27,8 +29,8 @@ const MoviePage = () => {
               <div className="section-line">
                 {!!movie && <MovieItem movie={movie} />}
               </div>
-              <Synopsis />
-              <MovieComments />
+              {!!movie && <Synopsis movie={movie} />}
+              {!!comments.length && <MovieComments comments={comments} />}
             </section>
           </div>
         </div>
