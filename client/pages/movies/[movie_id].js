@@ -21,7 +21,7 @@ const MoviePage = () => {
       })
   }, [movie_id])
   return (
-    <MainLayout>
+    <MainLayout title={movie?.title}>
       <div className="container">
         <div className="sidebar-container">
           <div className="content">

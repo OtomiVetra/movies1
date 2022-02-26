@@ -1,6 +1,6 @@
 import Link from "next/link";
 const MovieItem = ({ movie }) => {
-  const { title, poster, genres, plot, year, runtime, _id } = movie;
+  const { title, poster, genres, plot, year, runtime, _id, imdb, directors } = movie;
   return (
     <div className="movie-info-entity">
       <div className="entity-poster" data-role="hover-wrap">
@@ -30,32 +30,32 @@ const MovieItem = ({ movie }) => {
               <span className="text-theme info-icon">
                 <i className="fas fa-star" />
               </span>
-              <span className="info-text">8,7</span>
+              <span className="info-text">{imdb.rating}</span>
               <span className="info-rest">/10</span>
             </div>
             <div className="info info-short">
               <span className="text-theme info-icon">
                 <i className="fas fa-clock" />
               </span>
-              <span className="info-text">130</span>
+              <span className="info-text">{runtime}</span>
               <span className="info-rest">&nbsp;min</span>
             </div>
           </div>
         </div>
         <ul className="entity-list">
           <li>
-            <span className="entity-list-title">Release:</span>July 21,
-            2014 (Dolby Theatre), August 1, 2014 (United States)
+            <span className="entity-list-title">Release:</span>{year}
           </li>
           <li>
             <span className="entity-list-title">Directed:</span>
-            <a className="content-link" href="#">
-              Lindson Wardens
-            </a>
-            ,
-            <a className="content-link" href="#">
-              Anabelle One
-            </a>
+            {directors.map((director, i) => {
+              return (
+                <Link href={`/?director=${director}`} key={i}><a className="content-link">
+                  {director}{i === directors.length - 1 ? "" : ", "}
+                  {/* длинна массива -1 */}
+                </a></Link>
+              )
+            })}
           </li>
           <li>
             <span className="entity-list-title">Starring:</span>

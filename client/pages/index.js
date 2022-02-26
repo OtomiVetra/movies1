@@ -17,7 +17,7 @@ const IndexPage = () => {
       .then(data => {
         setMovies(data.items);
       })
-  }, [router.isReady])
+  }, [router.isReady, router?.query?.genre])
   return (
     <MainLayout>
       <section className="section-long">
