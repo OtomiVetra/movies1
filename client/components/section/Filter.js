@@ -1,4 +1,12 @@
+import { useRouter } from "next/router"
+
 const FilterSection = () => {
+  const genres = ["News", "Western", "Horror", "Musical", "Fantasy", "War", "Thriller", "Crime", "Sci-Fi", "Drama", "Music", "Action", "Mystery", "Romance", "Comedy", "Biography", "History", "Sport", "Family", "Short", "Animation", "Adventure", "Documentary"]
+  const years = [];
+  for (let i = 2015; i >= 1915; i -= 1) {
+    years.push(i)
+  }
+  const router = useRouter();
   return (
     <div className="section-pannel">
       <div className="grid row">
@@ -7,50 +15,26 @@ const FilterSection = () => {
             <div className="row form-grid">
               <div className="col-sm-6 col-lg-3">
                 <div className="input-view-flat input-group">
-                  <select className="form-control" name="genre">
-                    <option selected="true">genre</option>
-                    <option>action</option>
-                    <option>adventure</option>
-                    <option>comedy</option>
-                    <option>crime</option>
-                    <option>detective</option>
-                    <option>drama</option>
-                    <option>fantasy</option>
-                    <option>melodrama</option>
-                    <option>romance</option>
-                    <option>superhero</option>
-                    <option>supernatural</option>
-                    <option>thriller</option>
-                    <option>sport</option>
-                    <option>historical</option>
-                    <option>horror</option>
-                    <option>musical</option>
-                    <option>sci-fi</option>
-                    <option>war</option>
-                    <option>western</option>
+                  <select className="form-control" name="genre" onChange={(e) => {
+                    router.push(`/?genre=${e.target.value}`)
+                  }}>
+                    {genres.map((genre) => {
+                      return (<option key={genre}>{genre}</option>)
+                    })}
                   </select>
                 </div>
               </div>
               <div className="col-sm-6 col-lg-3">
                 <div
                   className="input-view-flat date input-group"
-                  data-toggle="datetimepicker"
-                  data-target="#release-year-field"
                 >
-                  <input
-                    className="datetimepicker-input form-control"
-                    id="release-year-field"
-                    name="releaseYear"
-                    type="text"
-                    placeholder="release year"
-                    data-target="#release-year-field"
-                    data-date-format="Y"
-                  />
-                  <div className="input-group-append">
-                    <span className="input-group-text">
-                      <i className="fas fa-calendar-alt" />
-                    </span>
-                  </div>
+                  <select className="form-control" name="years" onChange={(e) => {
+                    router.push(`/?year=${e.target.value}`)
+                  }}>
+                    {years.map((year) => {
+                      return (<option key={year}>{year}</option>)
+                    })}
+                  </select>
                 </div>
               </div>
               <div className="col-sm-6 col-lg-3">

@@ -1,6 +1,6 @@
 import Link from "next/link";
 const MovieItem = ({ movie }) => {
-  const { title, poster, genres, plot, year, runtime, _id, imdb, directors } = movie;
+  const { title, poster, genres, plot, year, runtime, _id, imdb, directors, cast, countries, languages = [] } = movie;
   return (
     <div className="movie-info-entity">
       <div className="entity-poster" data-role="hover-wrap">
@@ -59,21 +59,14 @@ const MovieItem = ({ movie }) => {
           </li>
           <li>
             <span className="entity-list-title">Starring:</span>
-            <a className="content-link" href="#">
-              Octopus Wardens
-            </a>
-            ,
-            <a className="content-link" href="#">
-              Quanta Wardens
-            </a>
-            ,
-            <a className="content-link" href="#">
-              Anabelle Two
-            </a>
-            ,
-            <a className="content-link" href="#">
-              Anabelle Three
-            </a>
+            {cast.map((actor, i) => {
+              return (
+                <Link href={`/?actor=${actor}`} key={i}><a className="content-link">
+                  {actor}{i === cast.length - 1 ? "" : ", "}
+                  {/* длинна массива -1 */}
+                </a></Link>
+              )
+            })}
           </li>
           <li>
             <span className="entity-list-title">Production company:</span>
@@ -87,13 +80,14 @@ const MovieItem = ({ movie }) => {
           </li>
           <li>
             <span className="entity-list-title">Country:</span>
-            <a className="content-link" href="#">
-              USA
-            </a>
-            ,
-            <a className="content-link" href="#">
-              India
-            </a>
+            {countries.map((country, i) => {
+              return (
+                <Link href={`/?country=${country}`} key={i}><a className="content-link">
+                  {country}{i === countries.length - 1 ? "" : ", "}
+                  {/* длинна массива -1 */}
+                </a></Link>
+              )
+            })}
           </li>
           <li>
             <span className="entity-list-title">Language:</span>english
