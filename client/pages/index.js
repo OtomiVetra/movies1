@@ -29,6 +29,7 @@ const IndexPage = () => {
     let URL = `${API_URL}/movies?`
     if (router.query.genre) { URL += `genre=${router.query.genre}` }
     if (router.query.year) { URL += `year=${router.query.year}` }
+    if (router.query.director) { URL += `director=${router.query.director}` }
 
     fetch(URL)
       .then(res => res.json())

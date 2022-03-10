@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 const MovieItem = ({ movie }) => {
   const { title, poster, genres, plot, year, runtime, _id, imdb, directors, cast, countries, languages = [] } = movie;
   return (

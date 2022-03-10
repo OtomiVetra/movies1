@@ -6,6 +6,7 @@ const MovieSchema = new Schema({
   title: String,
   genres: [String],
   imdb: { rating: Number },
+  directors: [String]
 });
 
 const model = mongoose.model('Movie', MovieSchema, 'movies');
