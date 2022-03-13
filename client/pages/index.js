@@ -23,29 +23,38 @@ import { useRouter } from "next/router";
 const API_URL = "http://localhost:3001";
 const IndexPage = () => {
   const router = useRouter();
-  const [movies, setMovies] = useState([])
+  const [movies, setMovies] = useState([]);
+  const [activePage, setActivePage] = useState(1);
+  const [pages, setPages] = useState(1);
   useEffect(() => {
     if (!router.isReady) return
     let URL = `${API_URL}/movies?`
-    if (router.query.genre) { URL += `genre=${router.query.genre}` }
-    if (router.query.year) { URL += `year=${router.query.year}` }
-    if (router.query.director) { URL += `director=${router.query.director}` }
-
+    if (router.query.genre) { URL += `&genre=${router.query.genre}` }
+    if (router.query.year) { URL += `&year=${router.query.year}` }
+    if (router.query.director) { URL += `&director=${router.query.director}` }
+    URL += `&skip=${(activePage - 1) * 10}`
     fetch(URL)
       .then(res => res.json())
       .then(data => {
+        const pages = Math.ceil(data.count / 10);
+        if (activePage > pages) {
+          setActivePage(pages)
+          return
+        }
         setMovies(data.items);
+        setPages(pages);
       })
-  }, [router.isReady, router?.query])
+  }, [router.isReady, router?.query, activePage])
   return (
     <MainLayout>
       <section className="section-long">
         <div className="container">
           <FilterSection genres={genres} />
+          <Pagination activePage={activePage} pages={pages} setActivePage={setActivePage} />
           {movies.map((movie) => {
             return <MovieArticle key={movie._id} movie={movie} />
           })}
-          <Pagination />
+          <Pagination activePage={activePage} pages={pages} setActivePage={setActivePage} />
         </div>
       </section>
     </MainLayout>
